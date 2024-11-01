@@ -36,12 +36,12 @@ const Register = () => {
     }
 
     if (!password || (password as string).length < 8) {
-      setError("Password must be at least 8 characters");
+      setError("Password must be at least 8 characters.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError("Passwords do not match!");
       return;
     }
 
@@ -55,13 +55,13 @@ const Register = () => {
       });
 
       if (res.status === 400) {
-        setError("This email is already registered");
+        setError("The email is already registered!");
       } else if (res.ok) {
         setError("");
         router.push("/login");
       }
     } catch (error) {
-      setError("Error, please try again later");
+      setError("Error, please try again later!");
       console.error(error);
     }
   };

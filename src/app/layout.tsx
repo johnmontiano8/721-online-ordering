@@ -1,31 +1,34 @@
-"use client"; // Ensure this is a client component
-
-import { usePathname } from "next/navigation"; // Import usePathname
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Header from "@/components/Header";
+import { getServerSession } from "next-auth";
+import SessionProvider from "../../utils/SessionProvider";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const pathname = usePathname();
-  const isDashboard = pathname === "/admin/dashboard"; // Check if the path is the dashboard
+export const metadata: Metadata = {
+  title: "721 Sportswear",
+  description: "No. 1 sublimation printing service in the town.",
+};
 
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await getServerSession();
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Show only logo in Header if on the dashboard */}
-        <Header showLogoOnly={isDashboard} />
-
-        <div className="flex-1 flex flex-col h-full">{children}</div>
-
-        {/* Hide Footer if on the dashboard */}
-        {!isDashboard && <Footer />}
+        <SessionProvider session={session}>
+          <div className="flex-1 flex flex-col h-full">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </SessionProvider>
       </body>
     </html>
   );

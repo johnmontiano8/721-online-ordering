@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Input } from "../../components/ui/input";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "../../components/ui/label";
 import MaxWidthWrapper from "../../components/MaxWidthWrapper";
 import { Button } from "../../components/ui/button";
@@ -14,19 +14,58 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 const Login = () => {
-  const [formData, setFormData] = useState({
-    usernameOrEmail: "",
-    password: "",
-  });
+  const router = useRouter();
+  const [error, setError] = useState("");
+  // const session = useSession();
+  const { status: sessionStatus } = useSession();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace("/");
+    }
+  }, [sessionStatus, router]);
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    if (!isValidEmail(email)) {
+      setError("Email is invalid");
+      return;
+    }
+
+    if (!password || password.length < 8) {
+      setError("Password is invalid");
+      return;
+    }
+
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (res?.error) {
+      setError("Invalid email or password");
+      if (res?.url) router.replace("//");
+    } else {
+      setError("");
+    }
   };
+
+  if (sessionStatus === "loading") {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <MaxWidthWrapper>
@@ -51,24 +90,16 @@ const Login = () => {
                 id="usernameOrEmail"
                 name="usernameOrEmail"
                 type="text"
-                value={formData.usernameOrEmail}
-                onChange={handleChange}
                 required
               />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
+              <Input id="password" name="password" type="password" required />
             </div>
 
+            {error && <p className="text-red-500">{error}</p>}
             <Button type="submit" className="w-full bg-orange-400 text-white">
               Login
             </Button>

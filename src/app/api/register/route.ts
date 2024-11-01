@@ -3,7 +3,9 @@ import connect from "@/lib/db";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
 
-export const POST = async (request: any) => {
+import { NextRequest } from "next/server";
+
+export const POST = async (request: NextRequest) => {
   const {
     firstName,
     lastName,
@@ -20,7 +22,7 @@ export const POST = async (request: any) => {
   // Check if the user already exists
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return new NextResponse("Email is already in use", { status: 400 });
+    return new NextResponse("Email is already in use.", { status: 400 });
   }
 
   // Hash the password
@@ -38,9 +40,9 @@ export const POST = async (request: any) => {
 
   try {
     await newUser.save();
-    return new NextResponse("User is registered", { status: 200 });
+    return new NextResponse("User is registered!", { status: 200 });
   } catch (err) {
     console.error("Error saving user:", err);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    return new NextResponse("Internal Server Error!", { status: 500 });
   }
 };

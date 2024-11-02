@@ -16,7 +16,12 @@ export const authOptions = {
       async authorize(credentials: any) {
         await connect();
         try {
-          const user = await User.findOne({ email: credentials.email });
+          const user = await User.findOne({
+            $or: [
+              { email: credentials.email },
+              { username: credentials.username },
+            ],
+          });
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
@@ -31,8 +36,6 @@ export const authOptions = {
         }
       },
     }),
-
-    // ...add more providers here
   ],
 };
 

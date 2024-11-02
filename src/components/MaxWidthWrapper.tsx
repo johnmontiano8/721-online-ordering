@@ -6,7 +6,7 @@ interface MaxWidthWrapperProps {
 
 const MaxWidthWrapper: React.FC<MaxWidthWrapperProps> = ({ children }) => {
   return (
-    <div className="h-full mx-auto w-full max-w-screen-xl px-2 md:px-20">
+    <div className="h-full mx-auto w-full max-w-screen-xl px-4 md:px-20">
       {children}
     </div>
   );

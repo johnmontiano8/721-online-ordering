@@ -7,11 +7,6 @@ import { ShoppingCart, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 const Header = ({ showLogoOnly = false }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   const [isAdmin] = useState(false);
 
   const { data: session }: any = useSession();
@@ -48,48 +43,45 @@ const Header = ({ showLogoOnly = false }) => {
                     <span className="sr-only">Cart</span>
                   </Link>
                 </li>
-                <li className="relative">
+                <li className="relative group">
                   <button
                     className="btn btn-ghost rounded-btn flex items-center p-2"
                     type="button"
-                    onClick={toggleDropdown}
                   >
                     <User size={24} />
                     <span className="sr-only">Account</span>
                   </button>
-                  {isOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
-                      {!session ? (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                    {!session ? (
+                      <Link
+                        href="/login"
+                        className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
+                      >
+                        Login
+                      </Link>
+                    ) : (
+                      <>
                         <Link
-                          href="/login"
+                          href="/myorders"
                           className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
                         >
-                          Login
+                          My Orders
                         </Link>
-                      ) : (
-                        <>
-                          <Link
-                            href="/myorders"
-                            className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
-                          >
-                            My Orders
-                          </Link>
-                          <Link
-                            href="/settings"
-                            className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
-                          >
-                            Account Settings
-                          </Link>
-                          <button
-                            onClick={() => signOut()}
-                            className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-100"
-                          >
-                            Logout
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  )}
+                        <Link
+                          href="/settings"
+                          className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
+                        >
+                          Account Settings
+                        </Link>
+                        <button
+                          onClick={() => signOut()}
+                          className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-100"
+                        >
+                          Logout
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </li>
               </ul>
             </div>

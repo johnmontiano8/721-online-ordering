@@ -20,7 +20,6 @@ import { useRouter } from "next/navigation";
 const Login = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  // const session = useSession();
   const { status: sessionStatus } = useSession();
 
   useEffect(() => {
@@ -34,13 +33,14 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
+    const formData = new FormData(e.currentTarget);
+    const usernameOrEmail = formData.get("usernameOrEmail") as string;
+    const password = formData.get("password") as string;
 
-    if (!isValidEmail(email)) {
-      setError("Email is invalid");
+    if (!usernameOrEmail) {
+      setError("Username or Email is required");
       return;
     }
 
@@ -51,13 +51,12 @@ const Login = () => {
 
     const res = await signIn("credentials", {
       redirect: false,
-      email,
+      [isValidEmail(usernameOrEmail) ? "email" : "username"]: usernameOrEmail,
       password,
     });
 
     if (res?.error) {
-      setError("Invalid email or password");
-      if (res?.url) router.replace("//");
+      setError("Invalid username/email or password");
     } else {
       setError("");
     }

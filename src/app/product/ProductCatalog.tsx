@@ -64,12 +64,14 @@ export default function ProductCatalog() {
               <Link href={`/product/${product.id}`} passHref>
                 <Button className="w-full mr-2">View Details</Button>
               </Link>
-              <Button
-                className="w-full ml-2"
-                onClick={() => handleAddToCart(product.id)}
-              >
-                Add to Cart
-              </Button>
+              <Link href={"/cart"} passHref>
+                <Button
+                  onClick={() => handleAddToCart(product.id)}
+                  className="w-full mr-2"
+                >
+                  Add to Cart
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}

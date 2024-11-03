@@ -52,13 +52,22 @@ const Header = ({ showLogoOnly = false }) => {
                     <span className="sr-only">Account</span>
                   </button>
                   <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                    {/* dropdown when no account is logged in */}
                     {!session ? (
-                      <Link
-                        href="/login"
-                        className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
-                      >
-                        Login
-                      </Link>
+                      <>
+                        <Link
+                          href="/login"
+                          className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
+                        >
+                          Login
+                        </Link>
+                        <Link
+                          href="/register"
+                          className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
+                        >
+                          Register
+                        </Link>
+                      </>
                     ) : (
                       <>
                         <Link

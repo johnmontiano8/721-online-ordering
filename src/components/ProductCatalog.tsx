@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -31,6 +33,11 @@ const products = [
 ];
 
 export default function ProductCatalog() {
+  const handleAddToCart = (productId: number) => {
+    // Add your add to cart logic here
+    console.log(`Product ${productId} added to cart`);
+  };
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6">Product Catalog</h1>
@@ -53,10 +60,16 @@ export default function ProductCatalog() {
               <h2 className="text-xl font-semibold">{product.name}</h2>
               <p className="text-gray-600">${product.price.toFixed(2)}</p>
             </CardContent>
-            <CardFooter className="bg-gray-50 p-4">
+            <CardFooter className="bg-gray-100 p-4 flex justify-between">
               <Link href={`/product/${product.id}`} passHref>
-                <Button className="w-full">View Details</Button>
+                <Button className="w-full mr-2">View Details</Button>
               </Link>
+              <Button
+                className="w-full ml-2"
+                onClick={() => handleAddToCart(product.id)}
+              >
+                Add to Cart
+              </Button>
             </CardFooter>
           </Card>
         ))}

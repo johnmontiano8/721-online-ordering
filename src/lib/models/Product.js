@@ -22,16 +22,26 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
 
-    category: {
-      type: String,
-      required: true,
-    },
+    colors: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
 
-    colors: [{ type: String }],
+    sizes: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
 
-    sizes: [{ type: String }],
-
-    customizationOptions: [{ type: String }],
+    customizationOptions: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
   },
   { timestamps: true }
 );

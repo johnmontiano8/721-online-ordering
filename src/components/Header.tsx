@@ -71,19 +71,19 @@ const Header = ({ showLogoOnly = false }) => {
                     ) : (
                       <>
                         <Link
-                          href="/myorders"
+                          href="./client/orders"
                           className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
                         >
                           My Orders
                         </Link>
                         <Link
-                          href="/settings"
+                          href="./client/settings"
                           className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
                         >
                           Account Settings
                         </Link>
                         <button
-                          onClick={() => signOut()}
+                          onClick={() => signOut({ callbackUrl: "/" })}
                           className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-100"
                         >
                           Logout

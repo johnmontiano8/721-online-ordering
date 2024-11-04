@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ImageSlider from "@/components/ImageSlider";
-import ProductCatalog from "./product/ProductCatalog";
+import ProductCatalog from "@/app/client/product/ProductCatalog";
 
 export default function Home() {
   return (

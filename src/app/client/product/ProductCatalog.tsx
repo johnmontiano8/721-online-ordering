@@ -57,11 +57,13 @@ export default function ProductCatalog() {
                   className="object-contain"
                 />
               </div>
+
               <h2 className="text-xl font-semibold">{product.name}</h2>
-              <p className="text-gray-600">${product.price.toFixed(2)}</p>
+              <p className="text-gray-600">Php{product.price}</p>
             </CardContent>
+
             <CardFooter className="bg-gray-100 p-4 flex justify-between">
-              <Link href={`/product/${product.id}`} passHref>
+              <Link href={`/product/ProductForm${product.id}`} passHref>
                 <Button className="w-full mr-2">View Details</Button>
               </Link>
               <Link href={"/cart"} passHref>

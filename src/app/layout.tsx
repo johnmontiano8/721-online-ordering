@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import { getServerSession } from "next-auth";
-import SessionProvider from "../../utils/SessionProvider";
 import Footer from "@/components/Footer";
+import SessionProvider from "@/lib/utils/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

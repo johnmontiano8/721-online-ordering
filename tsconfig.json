@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Header",
-    "src/models/Order.js"
+    "src/lib/models/Order.js"
   ],
   "exclude": ["node_modules"]
 }

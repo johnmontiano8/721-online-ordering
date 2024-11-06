@@ -1,9 +1,7 @@
-import connect from "@/lib/db";
-import User from "@/lib/models/User";
+import dbConnect from "@/lib/dbConnect";
+import User from "@/lib/models/UserModel";
 import bcrypt from "bcryptjs";
-import { NextResponse } from "next/server";
-
-import { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 export const POST = async (request: NextRequest) => {
   const {
@@ -17,7 +15,7 @@ export const POST = async (request: NextRequest) => {
     password,
   } = await request.json();
 
-  await connect();
+  await dbConnect();
 
   // Check if the user already exists
   const existingUser = await User.findOne({ email });

@@ -18,25 +18,25 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ children }) => {
             href="/admin/sales"
             className="block px-4 py-2 text-gray-600 hover:bg-orange-200"
           >
-            Sales
+            Sales Overview
           </Link>
           <Link
             href="/admin/inventory"
             className="block px-4 py-2 text-gray-600 hover:bg-orange-200"
           >
-            Inventory
+            Inventory Management
           </Link>
           <Link
             href="/admin/orders"
             className="block px-4 py-2 text-gray-600 hover:bg-orange-200"
           >
-            Orders
+            Order Management
           </Link>
           <Link
             href="/admin/users"
             className="block px-4 py-2 text-gray-600 hover:bg-orange-200"
           >
-            Account Management
+            User Management
           </Link>
         </nav>
       </aside>

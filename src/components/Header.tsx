@@ -7,7 +7,7 @@ import { ShoppingCart, User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 const Header = ({ showLogoOnly = false }) => {
-  const [isAdmin] = useState(false);
+  const [isAdmin] = useState(true);
 
   const { data: session }: any = useSession();
 
@@ -36,7 +36,7 @@ const Header = ({ showLogoOnly = false }) => {
                 )}
                 <li>
                   <Link
-                    href="/cart"
+                    href="/client/cart"
                     className="btn btn-ghost rounded-btn flex items-center p-2"
                   >
                     <ShoppingCart size={24} />

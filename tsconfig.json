@@ -28,7 +28,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Header",
-    "src/lib/models/Order.js"
+    "src/lib/models/Order.ts",
+    "src/lib/db.js",
+    "src/lib/db.js",
+    "src/lib/dbConnect.js"
   ],
   "exclude": ["node_modules"]
 }

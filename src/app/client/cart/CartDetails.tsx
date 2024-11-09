@@ -42,7 +42,7 @@ export default function CartDetails() {
                   <tr key={item.slug}>
                     <td>
                       <Link
-                        href={`/product/${item.slug}`}
+                        href={`/client/product/${item.slug}`}
                         className="flex items-center"
                       >
                         <Image

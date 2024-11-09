@@ -18,7 +18,7 @@ const data = {
   products: [
     {
       name: "Jersey Sando",
-      price: 19.99,
+      price: 150,
       image: "/jersey-sando.png",
       slug: "jersey-sando",
       description: "nice sando",
@@ -30,7 +30,7 @@ const data = {
     },
     {
       name: "Jersey Shorts",
-      price: 24.99,
+      price: 150,
       image: "/jersey-shorts.png",
       slug: "jersey-shorts",
       description: "nice shorts",
@@ -42,7 +42,7 @@ const data = {
     },
     {
       name: "T-Shirt",
-      price: 14.99,
+      price: 150,
       image: "/t-shirt.jpg",
       slug: "t-shirt",
       description: "nice tshirt",
@@ -54,7 +54,7 @@ const data = {
     },
     {
       name: "Hoodie",
-      price: 29.99,
+      price: 150,
       image: "/hoodie.jpg",
       slug: "hoodie",
       description: "nice hoodie",

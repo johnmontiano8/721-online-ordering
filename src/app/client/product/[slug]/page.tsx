@@ -11,6 +11,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import AddToCart from "@/components/products/AddToCart";
 import productsService from "@/lib/services/productService";
+import { Button } from "@/components/ui/button";
 
 export async function generateMetadata({
   params,
@@ -98,7 +99,7 @@ export default async function ProductDetails({
               />
             </div>
 
-            <div className="card bg-base-300 shadow-xl mt-3 md:mt-0">
+            <div className="card bg-base-300 shadow-xl mt-3 md:mt-0 py-4 px-4 ">
               <div className="card-body">
                 <div className="mb-2 flex justify-between">
                   <div>Price</div>
@@ -121,6 +122,12 @@ export default async function ProductDetails({
                     />
                   </div>
                 )}
+              </div>
+
+              <div className="flex justify-center mt-4">
+                <Link href="/components/products/ProductCustomizer">
+                  <Button className="btn btn-primary">Create a Design</Button>
+                </Link>
               </div>
             </div>
           </div>

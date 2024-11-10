@@ -19,7 +19,7 @@ export default function CartDetails() {
   if (!mounted) return <></>;
 
   return (
-    <>
+    <div className="pb-4 pt-1">
       <h1 className="py-4 text-2xl">Shopping Cart</h1>
 
       {items.length === 0 ? (
@@ -89,7 +89,7 @@ export default function CartDetails() {
                   </li>
                   <li>
                     <Button
-                      onClick={() => router.push("/client/address")}
+                      onClick={() => router.push("/client/checkout")}
                       className="btn btn-primary w-full"
                     >
                       Checkout
@@ -101,6 +101,6 @@ export default function CartDetails() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

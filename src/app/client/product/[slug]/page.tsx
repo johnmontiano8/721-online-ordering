@@ -125,7 +125,7 @@ export default async function ProductDetails({
               </div>
 
               <div className="flex justify-center mt-4">
-                <Link href="/components/products/ProductCustomizer">
+                <Link href="/client/customizer">
                   <Button className="btn btn-primary">Create a Design</Button>
                 </Link>
               </div>

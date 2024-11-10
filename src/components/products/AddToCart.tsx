@@ -2,12 +2,10 @@
 
 import useCartService from "@/lib/hooks/useCartStore";
 import { OrderItem } from "@/lib/models/OrderModel";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 
 export default function AddToCart({ item }: { item: OrderItem }) {
-  const router = useRouter();
   const { items, increase, decrease } = useCartService();
   const [existItem, setExistItem] = useState<OrderItem | undefined>();
 
@@ -18,6 +16,7 @@ export default function AddToCart({ item }: { item: OrderItem }) {
   const addToCartHandler = () => {
     increase(item);
   };
+
   return existItem ? (
     <div>
       <Button className="btn" type="button" onClick={() => decrease(existItem)}>

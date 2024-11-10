@@ -77,7 +77,7 @@ const Header = ({ showLogoOnly = false }) => {
                           My Orders
                         </Link>
                         <Link
-                          href="./client/settings"
+                          href="/client/settings"
                           className="block px-4 py-2 text-gray-700 hover:bg-orange-100"
                         >
                           Account Settings
